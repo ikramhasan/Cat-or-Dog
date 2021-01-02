@@ -69,9 +69,6 @@ class _HomePageState extends State<HomePage> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
-    print(height);
-    print(width);
-
     buildImagePickerButton({String text, Function onTap}) {
       return InkWell(
         onTap: onTap,
@@ -98,11 +95,11 @@ class _HomePageState extends State<HomePage> {
 
     buildCatOrDogColumn() {
       return Positioned(
-        top: 60,
+        top: height * 0.071,
         child: Column(
           children: [
             Container(
-              height: 300,
+              height: height * 0.359,
               width: width,
               child: Image.asset(
                 'assets/cover.png',
@@ -129,19 +126,19 @@ class _HomePageState extends State<HomePage> {
         confidence = confidence * 100;
       }
       return Positioned(
-        top: 60,
+        top: height * 0.071,
         child: Column(
           children: [
             Container(
               color: Colors.red,
-              height: 400,
-              width: 350,
+              height: height * 0.479,
+              width: width * 0.891,
               child: Image.file(
                 image,
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(height: 30),
+            SizedBox(height: height * 0.035),
             output != null
                 ? Text(
                     'I\'m ${confidence.round()}% sure it\'s a ${output[0]['label']}',
@@ -163,14 +160,14 @@ class _HomePageState extends State<HomePage> {
         children: [
           image == null ? buildCatOrDogColumn() : buildClassifiedImageColumn(),
           Positioned(
-            bottom: 130,
+            bottom: height * 0.155,
             child: buildImagePickerButton(
               text: 'Take a photo',
               onTap: () => pickImage(source: ImageSource.camera),
             ),
           ),
           Positioned(
-            bottom: 60,
+            bottom: height * 0.071,
             child: buildImagePickerButton(
               text: 'Choose from gallery',
               onTap: () => pickImage(source: ImageSource.gallery),
